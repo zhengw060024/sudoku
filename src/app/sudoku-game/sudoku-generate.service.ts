@@ -1,5 +1,8 @@
 import { Injectable } from '@angular/core';
 import { leave } from '@angular/core/src/profile/wtf_impl';
+// 数独生成算法参考以下网址实现
+// http://blog.csdn.net/zj0395/article/details/72773001
+
 function printSudoku(sudoku: Array<Array<number>>) {
   for (let i = 0; i < 9; ++i) {
     console.log(sudoku[i]);
