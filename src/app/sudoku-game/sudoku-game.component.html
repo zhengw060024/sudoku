@@ -1,0 +1,31 @@
+<div style="color:blue">
+  {{strGameResult}}
+</div>
+<div>
+    <b>游戏等级</b>
+    <br />
+    容易<input type="radio"   name="xxx" checked value=1 (click)="changeGameType(1)"/> 
+    <br />
+    普通<input type="radio"   name="xxx"  value=2 (click)="changeGameType(2)"/> 
+    <br />
+    困难<input type="radio"   name="xxx"  value=3 (click)="changeGameType(3)"/> 
+    <br />
+    地狱<input type="radio"   name="xxx"  value=4 (click)="changeGameType(4)"/> 
+    <br>
+</div>
+<div>
+  <button (click)="newGame()">新的游戏</button>
+</div>
+<div align="center">
+  <table border="1" cellpadding="10">
+    <tr *ngFor = "let iRow of sudokuStruct;let rowId=index">
+      <th  *ngFor = "let iCol of iRow;let colId=index" (click)="doChectItem(rowId,colId)" style="width:30px;height:30px"  [style.background-color]="getItemData(iCol,rowId, colId)">
+        {{dataToString(iCol)}}
+      </th>
+    </tr>
+  </table>
+</div>
+<div>
+  <button *ngFor = "let num of arrayInputNum" (click)="onClickNum(num)">{{num}}</button>
+  <button (click)= "removeNum()">x</button>
+</div>

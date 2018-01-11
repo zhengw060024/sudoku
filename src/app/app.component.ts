@@ -6,5 +6,8 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'app';
+  title = '新的游戏';
+  gameWin() {
+    this.title = '你赢了';
+  }
 }
