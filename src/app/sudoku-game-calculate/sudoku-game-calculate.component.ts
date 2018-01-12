@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, HostListener } from '@angular/core';
 interface CurrentSelect {
   rowId: number;
   colId: number;
@@ -78,6 +78,7 @@ function checkSudolegal(k: number, t: number, sudoku: Array<Array<number>>): boo
   styleUrls: ['./sudoku-game-calculate.component.css']
 })
 export class SudokuGameCalculateComponent implements OnInit {
+
   sudokuStruct: Array<Array<number>>;
   currentItem: CurrentSelect;
   arrayInputNum: Array<number>;
@@ -86,6 +87,24 @@ export class SudokuGameCalculateComponent implements OnInit {
   constructor() {
     this.arrayInputNum = [1, 2, 3, 4, 5, 6, 7, 8, 9];
     this.resetArrayGame();
+  }
+  @HostListener('window:keydown', ['$event'])
+  _handleKeydown(event: KeyboardEvent): void {
+    const keyCode = event.keyCode;
+    // console.error(keyCode);
+      //   const keyCode = event.keyCode;
+    if ((keyCode > 48 && keyCode <= 57)) {
+      if (this.bGetSoduResult) {
+        return;
+      }
+      if (this.currentItem.rowId !== -1 && this.currentItem.colId !== -1) {
+        const i = this.currentItem.rowId;
+        const j = this.currentItem.colId;
+        this.sudokuStruct[i][j] = keyCode - 48;
+      }
+    } else {
+    }
+    console.log('ssssssss', keyCode);
   }
   resetArrayGame() {
     this.sudokuStruct = [];
@@ -121,6 +140,9 @@ export class SudokuGameCalculateComponent implements OnInit {
     return 'green';
   }
   onClickNum(num: number) {
+    if (this.bGetSoduResult) {
+      return;
+    }
     if (this.currentItem.rowId !== -1 && this.currentItem.colId !== -1) {
       const i = this.currentItem.rowId;
       const j = this.currentItem.colId;
@@ -149,7 +171,7 @@ export class SudokuGameCalculateComponent implements OnInit {
     }
     if (nCount < 20) {
       this.computeresultInfo = '请在输入一些数据，目前的数据太少了';
-      return ;
+      return;
     }
     // 检查输入数据是否合法
     if (!this.checkInputLegal(this.sudokuStruct)) {
@@ -159,7 +181,7 @@ export class SudokuGameCalculateComponent implements OnInit {
     if (getSudokuResult(this.sudokuStruct)) {
       this.bGetSoduResult = true;
       this.computeresultInfo = '已经成功求解数独';
-    }else {
+    } else {
       this.computeresultInfo = '该数独无解！';
     }
   }
@@ -175,6 +197,16 @@ export class SudokuGameCalculateComponent implements OnInit {
     }
     return true;
   }
+  // onKeyPress(event: any) {
+  //   const keyCode = event.keyCode;
+  //   if ((keyCode >= 48 && keyCode <= 57)) {
+  //     event.returnValue = true;
+  //   } else {
+  //     event.returnValue = false;
+  //   }
+  //   console.log('keycode');
+  // }
+  /** Handles all keydown events on the select. */
   ngOnInit() {
   }
 

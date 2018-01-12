@@ -8,9 +8,9 @@
   <button (click) = "getResult()">电脑推演</button>
 </div>
 <div align="center">
-  <table border="1" cellpadding="10">
+  <table border="1" cellpadding="10" >
     <tr *ngFor = "let iRow of sudokuStruct;let rowId=index">
-      <th  *ngFor = "let iCol of iRow;let colId=index" (click)="doChectItem(rowId,colId)" style="width:30px;height:30px"  [style.background-color]="getItemData(iCol,rowId, colId)">
+      <th  *ngFor = "let iCol of iRow;let colId=index" (click)="doChectItem(rowId,colId)"  style="width:30px;height:30px"  [style.background-color]="getItemData(iCol,rowId, colId)">
         {{dataToString(iCol)}}
       </th>
     </tr>

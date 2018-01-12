@@ -3,14 +3,24 @@
   <h1>
     欢迎来到数独世界
   </h1>
+  <div>
+    <b>选择类型</b>
+    <br /> 数独游戏
+    <input type="radio" name="userdefineType" checked value=1 (click)="changeUserType(1)" />
+    <br /> 数独求解
+    <input type="radio" name="userdefineType" value=2 (click)="changeUserType(2)" />
+  </div>
+  <div *ngIf="userType === 1">
+    <app-sudoku-game></app-sudoku-game>
+  </div>
+  <div *ngIf="userType === 2">
+    <app-sudoku-game-calculate></app-sudoku-game-calculate>
+  </div>
   <!--<nav>
     <a routerLink="/game" routerLinkActive="active">数独游戏</a>
     <a routerLink="/calculate" routerLinkActive="active">数独求解</a>
   </nav>
   <router-outlet></router-outlet>!-->
-  <app-sudoku-game></app-sudoku-game>
-  <app-sudoku-game-calculate></app-sudoku-game-calculate>
+  <!--<app-sudoku-game></app-sudoku-game>
+  <app-sudoku-game-calculate></app-sudoku-game-calculate>!-->
 </div>
-
-
-

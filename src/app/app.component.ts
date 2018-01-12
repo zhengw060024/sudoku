@@ -7,6 +7,10 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = '新的游戏';
+  userType = 1;
+  changeUserType(type: number) {
+    this.userType = type;
+  }
   gameWin() {
     this.title = '你赢了';
   }

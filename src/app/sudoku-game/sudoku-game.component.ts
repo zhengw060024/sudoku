@@ -1,4 +1,4 @@
-import { Component, OnInit, EventEmitter, Output } from '@angular/core';
+import { Component, OnInit, EventEmitter, Output, HostListener } from '@angular/core';
 import { SudokuGenerateService } from './sudoku-generate.service';
 
 interface CurrentSelect {
@@ -45,6 +45,31 @@ export class SudokuGameComponent implements OnInit {
     //   }
     //   this.sudokuStruct.push(arrayRow);
     // }
+  }
+  @HostListener('window:keydown', ['$event'])
+  _handleKeydown(event: KeyboardEvent): void {
+    const keyCode = event.keyCode;
+    // console.error(keyCode);
+      //   const keyCode = event.keyCode;
+    if (this.bGameWin) {
+      return;
+    }
+    if ((keyCode > 48 && keyCode <= 57)) {
+      if (this.currentItem.rowId !== -1 && this.currentItem.colId !== -1) {
+        const i = this.currentItem.rowId;
+        const j = this.currentItem.colId;
+        this.sudokuStruct[i][j] = keyCode - 48;
+        const gameResult = this.checkGameWin();
+        if (gameResult) {
+          this.bGameWin = true;
+          // 发送时间通知已经胜利了
+          this.strGameResult = '恭喜你求解成功！！！！';
+          this.onGameWin.emit(true);
+        }
+      }
+    } else {
+    }
+    console.log('ssssssss', keyCode);
   }
   changeGameType(gameLevel: number) {
     console.log(gameLevel);
