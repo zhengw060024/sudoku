@@ -6,10 +6,10 @@ import { RouterModule, Routes } from '@angular/router';
 import { SudokuGameComponent } from './sudoku-game/sudoku-game.component';
 import { SudokuGenerateService } from './sudoku-game/sudoku-generate.service';
 import { SudokuGameCalculateComponent } from './sudoku-game-calculate/sudoku-game-calculate.component';
-const appRoutes: Routes = [
-  { path: 'game', component: SudokuGameComponent },
-  { path: 'calculate',  component: SudokuGameCalculateComponent },
-];
+// const appRoutes: Routes = [
+//   { path: 'game', component: SudokuGameComponent },
+//   { path: 'calculate',  component: SudokuGameCalculateComponent },
+// ];
 
 @NgModule({
   declarations: [
@@ -19,10 +19,10 @@ const appRoutes: Routes = [
   ],
   imports: [
     BrowserModule,
-    RouterModule.forRoot(
-      appRoutes,
-      { enableTracing: true } // <-- debugging purposes only
-    )
+    // RouterModule.forRoot(
+    //   appRoutes,
+    //   { enableTracing: true } // <-- debugging purposes only
+    // )
   ],
   providers: [
     SudokuGenerateService
